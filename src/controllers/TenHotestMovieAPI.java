@@ -1,3 +1,5 @@
+package controllers;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,15 +14,23 @@ public class TenHotestMovieAPI
  public TenHotestMovieAPI()
  {}
 
- public User addUser(String firstName, String lastName, String age, String gender, String occupation)
+ public User addUser(String firstname, String lastname,  String gender, int age, String occupation)
  {
- User user = new User (firstName, lastName, age, gender, occupation);
+ User user = new User (firstname,lastname, gender, age, occupation);
  userIndex.put(user.id, user);
  return user;
  }
- public Movie addMovie(String title, String year, String url)
+ 
+ public User removeUser(Long id)
  {
- Movie movie = new Movie (title, year, url);
+  userIndex.put(User.id, user);
+ return null;
+ }
+ 
+ 
+ public Movie addMovie(String title, int date, String url)
+ {
+ Movie movie = new Movie (title, date, url);
  movieIndex.put(movie.id, movie);
  return movie;
  }

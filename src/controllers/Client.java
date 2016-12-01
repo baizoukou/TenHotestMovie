@@ -9,10 +9,10 @@ public class Client
 {
  public TenHotestMovieAPI TenHotestMovie;
  @Command(description="Add a new User")
- public void addUser (@Param(name="first name") String firstName, @Param(name="last name") String lastName,
- @Param(name="age") String age, @Param(name="gender") String gender, @Param(name="occupation") String occupation)
+ public void addUser (@Param(name="firstname") String firstname, @Param(name="lastname") String lastname,
+ @Param(name="age") int age, @Param(name="gender") String gender, @Param(name="occupation") String occupation)
  {
-	 TenHotestMovie.addUser(firstName, lastName, age, gender, occupation);
+	 TenHotestMovie.addUser(firstname, lastname, gender, age,  occupation);
  }
 
  @Command(description="Delete a User")
@@ -21,9 +21,9 @@ public class Client
 	 TenHotestMovie.removeUser(id);
  }
  @Command(description="Add a Movie")
- public void addMovie (@Param(name="title") String title, @Param(name="year") String year, @Param(name="url") String url)
+ public void addMovie (@Param(name="title") String title, @Param(name="date") int date, @Param(name="url") String url)
  {
-	 TenHotestMovie.addMovie(title, year, url);
+	 TenHotestMovie.addMovie(title, date, url);
  }
  public static void client(String[] args) throws Exception
  {
