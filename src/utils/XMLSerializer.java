@@ -1,7 +1,7 @@
 package utils;
 
 /*
- * * @author alexandre Baizoukou WIT Bsc Applied Computing
+ * @author alexandre Baizoukou WIT Bsc Applied Computing
  * @version 1.0
  * @author Eamon Delastar WIT Lecturer
  * @author Franck Walsh WIT Lecturer
@@ -9,6 +9,8 @@ package utils;
  * @author Cormen, Leiserson, Rivest, Stein, Introduction to Algorithms, MIT Press
  * @author Fotakis. Course of Algorithms and Complexity at the National Technical University of Athens.
  * @author Tim Roughgarden Coursera 
+ * 
+ * this class stream files and sterilizes them into XML file  
  *  
  */
 

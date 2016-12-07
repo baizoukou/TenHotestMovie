@@ -11,6 +11,10 @@ package models;
  * @author Fotakis. Course of Algorithms and Complexity at the National Technical University of Athens.
  * @author Tim Roughgarden Coursera 
  *  
+ *  This class is content a hash map of movie data type
+ *  define movie object
+ *  generate getters & setters
+ *  
  */
 
 import java.io.FileNotFoundException;

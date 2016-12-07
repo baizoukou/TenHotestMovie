@@ -13,23 +13,23 @@ public class UserTest
   @Test
   public void testCreate()
   {
-	assertEquals (01,               homer.id);
+	assertEquals (01,                    homer.id);
 	assertEquals ("homer",               homer.firstname);
     assertEquals ("simpson",             homer.lastname);
     assertEquals (25,                    homer.age     );   
     assertEquals ("male",                homer.gender); 
-    assertEquals ("homer",               homer.occupation);
+    assertEquals ("doctor",              homer.occupation);
   }
 
   @Test
   public void testIds()
   {
     Set<Long> ids = new HashSet<>();
-    for (User user : users)
+    for (User user : user)
     {
       ids.add(user.id);
     }
-    assertEquals (users.length, ids.size());
+    assertEquals (user.length, ids.size());
   }
 
   @Test

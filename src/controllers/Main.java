@@ -1,5 +1,15 @@
 package controllers;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.google.common.collect.Sets;
+
 import asg.cliche.Command;
 import asg.cliche.Param;
 import asg.cliche.Shell;
@@ -54,8 +64,9 @@ public class Main
  {
 	 TenHotestMovie.addMovie(title, date, url);
  }
- 
- public static void client(String[] args) throws Exception
+
+
+ public static void main(String[] args) throws Exception
  {
  Main main = new Main();
  Shell shell = ShellFactory.createConsoleShell("lm", "Welcome to TenHotestMovie - ?help for instructions", main);

@@ -10,6 +10,9 @@ package models;
  * @author Fotakis. Course of Algorithms and Complexity at the National Technical University of Athens.
  * @author Tim Roughgarden Coursera 
  *  
+ *  This class describes hash map of users
+ *  defines user object
+ *  generates getters & setters of the class
  */
 
 import java.io.FileNotFoundException;
@@ -37,8 +40,8 @@ public class User {
 		this.id = counter++;
 		this.firstname = firstname;
 		this.lastname = lastname;
-		this.gender = gender;
 		this.age = age;
+		this.gender = gender;
 		this.occupation = occupation;
 	}
 
