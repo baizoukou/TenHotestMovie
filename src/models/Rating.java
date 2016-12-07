@@ -1,10 +1,15 @@
 package models;
 
+
+
+import java.io.FileNotFoundException;
+
 /*
  * @author alexandre Baizoukou WIT Bsc Applied Computing
  * @version 1.0
+ * @author Eamon Delastar WIT Lecturer
  * @author Franck Walsh WIT Lecturer
- * @author Martin Harrigan WIT Math Center
+ * @author Martin Harrigan Assistant Lecturer WIT 
  * @author Cormen, Leiserson, Rivest, Stein, Introduction to Algorithms, MIT Press
  * @author Fotakis. Course of Algorithms and Complexity at the National Technical University of Athens.
  * @author Tim Roughgarden Coursera 
@@ -21,24 +26,32 @@ package models;
 */
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
+import utils.CSVLoader;
+
+
+
+@SuppressWarnings("unused")
 public class Rating
 
 	{
 		private User user;
 		private Movie movie;
 		int rating;
-		int average;
+		private int average;
 		
 		public Movie getMovie() {
 			return movie;
 		}
-		public Rating(User user, Movie movie, int rating) {
+		public Rating(User user, Movie movie, int rating, int average) {
 			super();
 			this.user = user;
 			this.movie = movie;
 			this.rating = rating;
+			this.setAverage(average);
 		}
 		public User getUser() {
 			return user;
@@ -56,6 +69,56 @@ public class Rating
 			this.movie = movie;
 		}
 		
-		 public List<Rating> r = new ArrayList<>();	
-	
-	}
+		 public int getAverage() {
+			return average;
+		}
+		public void setAverage(int average) {
+			this.average = average;
+		}
+
+		public static List<Rating> r = new ArrayList<>();	
+		 
+			{
+				try {
+					Rating.r = CSVLoader.importRating("data/rating.dat", User.users,Movie.movies);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			
+//			public static HashMap<Long, Movie> movies;
+//			//public Iterable<String> TenHottestMovies(String title, int k)
+//			{
+//				
+//				List <Rating> filtered = new ArrayList<Rating>(); 
+//				//for (Rating r = average(average + r)*average +(rating/(average+r))*r  )
+//				for (Rating r   )	
+//				{
+//					if (((Rating) r).getTitle().startsWith(title) ){
+//						filtered.add( r);
+//					}
+//		 		}
+//				
+//		            Collections.sort(filtered);
+//		            List<String> result = new ArrayList <String>();
+//		            String ratingOf_and_title = "";
+//		            String this_title = "";
+//					for (Rating r: filtered){
+//						
+//						this_title = r.getTitle();
+//						
+//						ratingOf_and_title = this.ratingOf(this_title) + "_"+this_title; 
+//						result.add(ratingOf_and_title);
+//											}
+//					if (result.size() > k  && k>=0 ){
+//						
+//						return result.subList(0, k);
+//					}else{
+//						return result;
+//					}
+//					
+//	
+//	}
+}

@@ -1,10 +1,27 @@
 package models;
 
+/*
+ * * @author alexandre Baizoukou WIT Bsc Applied Computing
+ * @version 1.0
+ * @author Eamon Delastar WIT Lecturer
+ * @author Franck Walsh WIT Lecturer
+ * @author Martin Harrigan Assistant Lecturer WIT 
+ * @author Cormen, Leiserson, Rivest, Stein, Introduction to Algorithms, MIT Press
+ * @author Fotakis. Course of Algorithms and Complexity at the National Technical University of Athens.
+ * @author Tim Roughgarden Coursera 
+ *  
+ */
+
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.google.common.base.Objects;
 
+import utils.CSVLoader;
+
+@SuppressWarnings("unused")
 public class User {
 	static Long counter = 0l;
 	public Long id;
@@ -25,6 +42,15 @@ public class User {
 		this.occupation = occupation;
 	}
 
+	public static HashMap<Long, User> users;
+	{
+		try {
+			User.users = CSVLoader.importUser();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 
 	@Override

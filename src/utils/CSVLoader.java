@@ -1,4 +1,4 @@
-package models;
+package utils;
 
 
 
@@ -13,20 +13,23 @@ package models;
 	import java.util.ListIterator;
 	import java.util.Scanner;
 
-	@SuppressWarnings("unused")
-	public class Loader {
-    /**
-     * @author alexandre Baizoukou WIT Bsc Applied Computing
-     * @version 1.0
-     * @author Franck Walsh WIT Lecturer
-     * @author Martin Harrigan WIT Math Center
-     * @author Cormen, Leiserson, Rivest, Stein
-     *  Introduction to Algorithms, MIT Press
-     *  @author Fotakis. Course of Algorithms and Complexity 
-     *  at the National Technical University of Athens.
-     *  @author Tim Roughgarden Coursera 
+import models.Movie;
+import models.Rating;
+import models.User;
 
-     * 
+	@SuppressWarnings("unused")
+	public class CSVLoader {
+	/*
+	 * * @author alexandre Baizoukou WIT Bsc Applied Computing
+	 * @version 1.0
+	 * @author Eamon Delastar WIT Lecturer
+	 * @author Franck Walsh WIT Lecturer
+	 * @author Martin Harrigan Assistant Lecturer WIT 
+	 * @author Cormen, Leiserson, Rivest, Stein, Introduction to Algorithms, MIT Press
+	 * @author Fotakis. Course of Algorithms and Complexity at the National Technical University of Athens.
+	 * @author Tim Roughgarden Coursera 
+	 *  
+	 * 
      * This class implement a simple loading of text 
      * file that will be later on serialize
      * importMovie is a Hashmap same as importUser
@@ -44,11 +47,12 @@ package models;
 		
 		public static final String r = null;
 
-		public ArrayList<Rating> rating = new ArrayList<Rating>();
+		public static ArrayList<Rating> rating = new ArrayList<Rating>();
 
-		public HashMap<Long, Movie> importMovie() throws FileNotFoundException 	
+		@SuppressWarnings("resource")
+		public static  HashMap<Long, Movie> importMovie() throws Exception 	
 		{
-			String url = "./data/movie.txt";
+			String url = "./data/movie.dat";
 			HashMap<Long, Movie> movies = new HashMap<Long, Movie>();
 
 			BufferedReader in = null;
@@ -68,19 +72,22 @@ package models;
 					long id = Long.parseLong(moviesTokens[0]);
 					Movie m = new Movie( moviesTokens[1], Integer.parseInt(moviesTokens[2]), moviesTokens[3]);
 					movies.put(new Long(id), m);
-					// System.out.println(" " + userTokens[0] + ": " +
-					// userTokens[1]);
+					
 
 				}
+				else{
+					throw new Exception("Are you sure doing the right thing?:"+ moviesTokens.length);
+			 }
 			}
 			inMovies.close();
 
 			return movies;
 		}
 
-		public HashMap<Long, User> importUser() throws FileNotFoundException 
+		@SuppressWarnings("resource")
+		public static HashMap<Long, User> importUser() throws Exception 
 		{
-			String url = "./data/user.txt";
+			String url = "./data/user.dat";
 			HashMap<Long, User> users = new HashMap<Long, User>();
 
 			BufferedReader in = null;
@@ -102,6 +109,9 @@ package models;
 					User u = new User(usersTokens[1], usersTokens[2], usersTokens[3], Integer.parseInt(usersTokens[4]), usersTokens[5]);
 					users.put(new Long(id), u);
 				}
+				else{
+					throw new Exception("Are you sure doing the right thing?:"+ usersTokens.length);
+				}
 			}
 			inUsers.close();
 
@@ -109,14 +119,14 @@ package models;
 		}
 
 
-	    private String url = "./data/rating.txt";
+	    private String url = "./data/rating.dat";
 
     	public ArrayList<Rating> getRating() {
 			return rating;
 		}
 
 		// Rating list
-		public ArrayList<Rating> importRating(String url, HashMap<Long, User> users, HashMap<Long, Movie> movies) throws FileNotFoundException {
+		public static  ArrayList<Rating> importRating(String url, HashMap<Long, User> users, HashMap<Long, Movie> movies) throws Exception {
 			BufferedReader in = null;
 			File ratingsFile = new File(url);
 			Scanner inRatings = new Scanner(ratingsFile);
@@ -135,12 +145,16 @@ package models;
 					User user = users.get(id);
 					long movie = Long.parseLong(ratingTokens[1]);
 					Movie m = movies.get(movie);
-					Rating r = new  Rating(user, m, Integer.parseInt(ratingTokens[2]));
+					Rating r = new  Rating(user, m, Integer.parseInt(ratingTokens[1]), Integer.parseInt(ratingTokens[2]));
 					rating.add(r);
 					inRatings.close();
 
 				}
+				else{
+					throw new Exception("Are you sure doing the right thing?:"+ ratingTokens.length);
+			 }
 			}
+			
 			inRatings.close();
 
 			return rating;
@@ -148,7 +162,7 @@ package models;
 		}
 	}
 
-
+	
 
 
 
