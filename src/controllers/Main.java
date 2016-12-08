@@ -42,7 +42,7 @@ import asg.cliche.ShellFactory;
 
 public class Main
 {
- public TenHotestMovieAPI TenHotestMovie;
+ public TenHotestMovieAPI TenHotestMovie = new TenHotestMovieAPI();
  
  @Command(description="Add a new User")
  public void addUser (@Param(name="firstname") String firstname, @Param(name="lastname") String lastname,
@@ -60,9 +60,9 @@ public class Main
  
  
  @Command(description="Add a Movie")
- public void addMovie (@Param(name="title") String title, @Param(name="date") int date, @Param(name="url") String url)
+ public void addMovie (@Param(name="title") String title, @Param(name="releaseDate") String releaseDate, @Param(name="url") String url)
  {
-	 TenHotestMovie.addMovie(title, date, url);
+	 TenHotestMovie.addMovie(title, releaseDate, url);
  }
 
 

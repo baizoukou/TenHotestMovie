@@ -1,28 +1,50 @@
 package utils;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 
 import com.google.common.collect.Multiset.Entry;
 
-public class Ranking<Rating> {
-	int averageMovies;
-	
-//	 public static HashMap<Long, Movie> movies;
-//	 Set<Entry<Movie, Movie>> set = Map.entrySet();
-//	 List<Entry<Rating, Rating>> list = new ArrayList<>(Sets);
-//	 Collections.sort(movieslist, new Comparator<Entry<average.rating>>() {
-//	     @Override
-//	     public int compare(Entry<Movie, Movie> m,
-//	             Entry<Rating, Rating> a) {
-//	         return m.getValue() - (a.getValue());
-//	
-//	     }
-//	 
-//	 
-//	 // Output the top 10 numbers
-//	 for (int i = 0; i < 10 && i < movieslist.size(); i++) {
-//	     System.out.println(movieslist.get(i));
-//	 }
+import models.Movie;
 
+public class Ranking<Rating> {
+    /**
+	* Returns the top n Items of an Item list
+    * @param items
+    * @param n
+    * @return ArrayList<Item> with the top n items
+    */
+
+	
+	public static List<Movie> getTenHotestMovie() {
+        int n = 10;
+		List<Movie> movies = new ArrayList<Movie>(CSVLoader.movies.values());
+		    Collections.sort(movies);
+		    n = (n > movies.size()) ? movies.size() : n;
+	        return new ArrayList<Movie>(movies.subList(0, n));
+	    }
+    /**
+     * Prints the top 10 movielist.
+     * 
+     * @param movies to print
+     * @param print top 10
+     */
+    public static void TenHotestMovie(ArrayList<Movie> movies, int n) {
+        for (Movie movie : getTenHotestMovie()) {
+            System.out.println(movie);
+        }
+    }
+    
+    
 }
+
+
+
+		    	 
+		    
+
+	
+

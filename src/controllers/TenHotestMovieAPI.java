@@ -61,18 +61,11 @@ public class TenHotestMovieAPI {
 
 	public static HashMap<Long, Movie> movies;
 
-	{
-		try {
-			Movie.movies = CSVLoader.importMovie();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+	
 
-	public Movie addMovie(String title, int date, String url) {
-		Movie movie = new Movie(title, date, url);
-		movieIndex.put(movie.id, movie);
+	public Movie addMovie(String title, String releaseDate, String url) {
+		Movie movie = new Movie(title, releaseDate, url);
+		movieIndex.put(movie.getId(), movie);
 		return movie;
 	}
 
@@ -80,6 +73,8 @@ public class TenHotestMovieAPI {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
 
 	
 

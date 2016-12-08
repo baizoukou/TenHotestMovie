@@ -1,7 +1,5 @@
 package models;
 
-
-
 import java.io.FileNotFoundException;
 
 /*
@@ -30,95 +28,62 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+import com.google.common.base.Preconditions;
+
 import utils.CSVLoader;
-
-
 
 @SuppressWarnings("unused")
 public class Rating
 
-	{
-		private User user;
-		private Movie movie;
-		int rating;
-		private int average;
-		
-		public Movie getMovie() {
-			return movie;
-		}
-		public Rating(User user, Movie movie, int rating, int average) {
-			super();
-			this.user = user;
-			this.movie = movie;
-			this.rating = rating;
-			this.setAverage(average);
-		}
-		public User getUser() {
-			return user;
-		}
-		public void setUser(User user) {
-			this.user = user;
-		}
-		public int getRating() {
-			return rating;
-		}
-		public void setRating(int rating) {
-			this.rating = rating;
-		}
-		public void setMovie(Movie movie) {
-			this.movie = movie;
-		}
-		
-		 public int getAverage() {
-			return average;
-		}
-		public void setAverage(int average) {
-			this.average = average;
-		}
+{
+	private User user;
+	private Movie movie;
+	int rating;
+   private double average;
 
-		public static List<Rating> r = new ArrayList<>();	
-		 
-			{
-				try {
-					Rating.r = CSVLoader.importRating("data/rating.dat", User.users,Movie.movies);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			
-			
-//			public static HashMap<Long, Movie> movies;
-//			//public Iterable<String> TenHottestMovies(String title, int k)
-//			{
-//				
-//				List <Rating> filtered = new ArrayList<Rating>(); 
-//				//for (Rating r = average(average + r)*average +(rating/(average+r))*r  )
-//				for (Rating r   )	
-//				{
-//					if (((Rating) r).getTitle().startsWith(title) ){
-//						filtered.add( r);
-//					}
-//		 		}
-//				
-//		            Collections.sort(filtered);
-//		            List<String> result = new ArrayList <String>();
-//		            String ratingOf_and_title = "";
-//		            String this_title = "";
-//					for (Rating r: filtered){
-//						
-//						this_title = r.getTitle();
-//						
-//						ratingOf_and_title = this.ratingOf(this_title) + "_"+this_title; 
-//						result.add(ratingOf_and_title);
-//											}
-//					if (result.size() > k  && k>=0 ){
-//						
-//						return result.subList(0, k);
-//					}else{
-//						return result;
-//					}
-//					
-//	
-//	}
+	public Movie getMovie() {
+		return movie;
+	}
+
+	public Rating(long userId, long movieId, int rating) {
+		Preconditions.checkArgument(userId < 1000);
+		Preconditions.checkArgument(movieId < 1800);
+		Preconditions.checkArgument(rating <= 5);
+		this.user = user;
+		this.movie = movie;
+		this.rating = rating;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public int getRating() {
+		return rating;
+	}
+
+	public void setRating(int rating) {
+		this.rating = rating;
+	}
+
+	public void setMovie(Movie movie) {
+		this.movie = movie;
+	}
+
+	public double getAverage() {
+		return average;
+	}
+
+	public void setAverage(int average) {
+		this.average = average;
+	}
+
+	public static List<Rating> r = new ArrayList<>();
+
+
+	
 }

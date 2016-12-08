@@ -18,50 +18,81 @@ package models;
  */
 
 import java.io.FileNotFoundException;
+import java.net.URI;
+import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Objects;
 
+import com.google.common.base.Preconditions;
+
 import utils.CSVLoader;
 
-@SuppressWarnings("unused")
-public class Movie {
-	static Long counter = 0l;
+public class Movie implements Comparable<Movie> {
 
-	public Long id;
-
-	public String title;
-	public int date;
-	public String url;
-
-	public Movie(String title, int date, String url) {
-		this.id = counter++;
+	private final long id;
+	private final String title;
+	private final String releaseDate;
+	private final String Url;
+		
+	private int sumRatings;
+	private int sumReviewers;
+	
+	public Movie(long id, String title, String releaseDate, String URL) {
+		Preconditions.checkArgument(id > 0);
+		Preconditions.checkNotNull(title);
+		Preconditions.checkNotNull(releaseDate);
+		Preconditions.checkNotNull(URL);
+		
+		
+		this.id = id;
 		this.title = title;
-		this.date = date;
-		this.url = url;
+		this.releaseDate = releaseDate;
+		this.Url = URL;
+		
 	}
-// load movie in hash map
-	public static HashMap<Long, Movie> movies;
-	{
-		try {
-			Movie.movies = CSVLoader.importMovie();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	
+
+
+	public void addRating(Rating rating) {
+		Preconditions.checkNotNull(rating);
+		sumRatings += rating.getRating();
+		sumReviewers++;
+	}
+
+	public double getAverageRating() {
+		if (sumReviewers == 0) {
+			return Double.NaN;
+		}
+		else {
+			return (double)sumRatings / sumReviewers;
 		}
 	}
-//	@Override
-//	public int hashCode() {
-//	return Objects.hashCode(this.id, this.title, this.date, this.url);
-//	}
-//
-//	@Override
-//	public boolean equals(final Object obj) {
-//		if (obj instanceof Movie) {
-//			final Movie other = (Movie) obj;
-//			return Objects.equals(title, other.title) && Objects.equals(date, other.date)
-//					&& Objects.equals(url, other.url);
-//		} else {
-//			return false;
-//		}
-//	
+	
+	public int getTotalRating() {
+		return this.sumRatings;
+	}
+	
+	public long getId() {
+		return id;
+	}
+
+	public String getReleaseDate() {
+		return releaseDate;
+	}
+
+	public String getUrl() {
+		return Url;
+	}
+
+	
+
+	
+	@Override
+	public int compareTo(Movie m) {
+		
+		return Double.compare(getAverageRating(),m.getAverageRating());
+	}
 }
+
+

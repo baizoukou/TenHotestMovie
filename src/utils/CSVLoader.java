@@ -48,12 +48,13 @@ import models.User;
 		public static final String r = null;
 
 		public static ArrayList<Rating> rating = new ArrayList<Rating>();
+		public static HashMap<Long, Movie> movies = new HashMap<Long, Movie>();
 
 		@SuppressWarnings("resource")
 		public static  HashMap<Long, Movie> importMovie() throws Exception 	
 		{
 			String url = "./data/movie.dat";
-			HashMap<Long, Movie> movies = new HashMap<Long, Movie>();
+			
 
 			BufferedReader in = null;
 			File moviesFile = new File(url);
@@ -70,7 +71,7 @@ import models.User;
 				if (moviesTokens.length >= 4) {
 
 					long id = Long.parseLong(moviesTokens[0]);
-					Movie m = new Movie( moviesTokens[1], Integer.parseInt(moviesTokens[2]), moviesTokens[3]);
+					Movie m = new Movie(id, moviesTokens[1], moviesTokens[2], moviesTokens[3]);
 					movies.put(new Long(id), m);
 					
 
@@ -145,10 +146,9 @@ import models.User;
 					User user = users.get(id);
 					long movie = Long.parseLong(ratingTokens[1]);
 					Movie m = movies.get(movie);
-					Rating r = new  Rating(user, m, Integer.parseInt(ratingTokens[1]), Integer.parseInt(ratingTokens[2]));
+					Rating r = new Rating(id,movie,Integer.parseInt(ratingTokens[2]));
 					rating.add(r);
 					inRatings.close();
-
 				}
 				else{
 					throw new Exception("Are you sure doing the right thing?:"+ ratingTokens.length);
