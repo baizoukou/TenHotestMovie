@@ -46,7 +46,6 @@ public class Movie implements Comparable<Movie> {
 		Preconditions.checkNotNull(URL);
 		
 		this.id = counter++;
-		
 		this.title = title;
 		this.releaseDate = releaseDate;
 		this.Url = URL;

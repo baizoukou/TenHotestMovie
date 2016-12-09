@@ -1,6 +1,5 @@
 package controllers;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -40,6 +39,7 @@ import asg.cliche.ShellFactory;
  
 */
 
+@SuppressWarnings("unused")
 public class Main
 {
  public TenHotestMovieAPI TenHotestMovie = new TenHotestMovieAPI();
@@ -48,7 +48,7 @@ public class Main
  public void addUser (@Param(name="firstname") String firstname, @Param(name="lastname") String lastname,
 		 			  @Param(name="age") int age, @Param(name="gender") String gender, @Param(name="occupation") String occupation)
  {
-	 TenHotestMovie.addUser(firstname, lastname,  age,gender,  occupation);
+	 TenHotestMovie.addUser(firstname, lastname,  age, gender,  occupation);
  }
 
  
@@ -65,17 +65,10 @@ public class Main
 	 TenHotestMovie.addMovie(title, releaseDate, url);
  }
  
-// @Command(description="Add a Rating")
-// public void addMovie (@Param(name="title") String title, @Param(name="releaseDate") String releaseDate, @Param(name="url") String url)
-// {
-//	 TenHotestMovie.addMovie(title, releaseDate, url);
-// }
-
-
  public static void main(String[] args) throws Exception
  {
  Main main = new Main();
- Shell shell = ShellFactory.createConsoleShell("lm", "Welcome to the TenHotestMovies platform - ?help for instructions", main);
+ Shell shell = ShellFactory.createConsoleShell("lm", "Welcome to the TenHotestMovies platform, when you are ready Let get started - ?help for instructions", main);
  shell.commandLoop();
  main.TenHotestMovie.store();
  }

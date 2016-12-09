@@ -26,8 +26,8 @@ import utils.CSVLoader;
 
 @SuppressWarnings("unused")
 public class User {
-	static Long counter = 0l;
-	public Long id;
+	private static long counter = 0;
+	public final long id;
 	public String firstname;
 	public String lastname;
 	public int age;
@@ -58,7 +58,7 @@ public class User {
 
 	@Override
 	public int hashCode() {
-		return Objects.hashCode(this.lastname, this.firstname, this.gender, this.age);
+		return Objects.hashCode(this.lastname, this.firstname,this.age, this.gender);
 	}
 
 	@Override

@@ -59,7 +59,7 @@ import models.User;
 			BufferedReader in = null;
 			File moviesFile = new File(url);
 			Scanner inMovies = new Scanner(moviesFile);
-			String delims = "|";// each field in the file is separated(delimited)
+			String delims = "[|]";// each field in the file is separated(delimited)
 			// by a space. 
 			while (inMovies.hasNextLine()) {
 				// get movies from data source
@@ -95,12 +95,12 @@ import models.User;
 			BufferedReader in = null;
 			File usersFile = new File(url);
 			Scanner inUsers = new Scanner(usersFile);
-			String delims = "|";// each field in the file is separated(delimited)
+			String delims = "[|]";// each field in the file is separated(delimited)
 			// by a space
 			while (inUsers.hasNextLine()) {
 				// get user from data source
 				String usersDetails =inUsers.nextLine().trim();
-				
+			
 				// parse user details string
 				String[] usersTokens = usersDetails.split(delims);
 
@@ -132,7 +132,7 @@ import models.User;
 			BufferedReader in = null;
 			File ratingsFile = new File(url);
 			Scanner inRatings = new Scanner(ratingsFile);
-			String delims = "|";
+			String delims = "[|]";
 			inRatings.nextLine();
 			while (inRatings.hasNextLine()) {
 				// get rating from data source

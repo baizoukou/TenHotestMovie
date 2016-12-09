@@ -50,7 +50,7 @@ public class TenHotestMovieAPI {
 
 	public User addUser(String firstname, String lastname,int age, String gender,  String occupation) {
 		User user = new User(firstname,lastname,  age, gender, occupation);
-		userIndex.put(user.id), user);
+		userIndex.put(user.id, user);
 		return user;
 	}
 
