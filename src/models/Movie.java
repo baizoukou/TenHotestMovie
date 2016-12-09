@@ -29,7 +29,8 @@ import com.google.common.base.Preconditions;
 import utils.CSVLoader;
 
 public class Movie implements Comparable<Movie> {
-
+	
+    private static long counter = 0;
 	private final long id;
 	private final String title;
 	private final String releaseDate;
@@ -38,14 +39,14 @@ public class Movie implements Comparable<Movie> {
 	private int sumRatings;
 	private int sumReviewers;
 	
-	public Movie(long id, String title, String releaseDate, String URL) {
-		Preconditions.checkArgument(id > 0);
+	public Movie( String title, String releaseDate, String URL) {
+		
 		Preconditions.checkNotNull(title);
 		Preconditions.checkNotNull(releaseDate);
 		Preconditions.checkNotNull(URL);
 		
+		this.id = counter++;
 		
-		this.id = id;
 		this.title = title;
 		this.releaseDate = releaseDate;
 		this.Url = URL;

@@ -30,13 +30,13 @@ public class User {
 	public Long id;
 	public String firstname;
 	public String lastname;
-	public String gender;
 	public int age;
+	public String gender;
 	public String occupation;
 
 	public List<Rating> ratings = new ArrayList<>();
 
-	public User(String firstname, String lastname, String gender, int age, String occupation) {
+	public User(String firstname, String lastname,int age, String gender,  String occupation) {
 		this.id = counter++;
 		this.firstname = firstname;
 		this.lastname = lastname;

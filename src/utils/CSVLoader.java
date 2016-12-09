@@ -71,7 +71,7 @@ import models.User;
 				if (moviesTokens.length >= 4) {
 
 					long id = Long.parseLong(moviesTokens[0]);
-					Movie m = new Movie(id, moviesTokens[1], moviesTokens[2], moviesTokens[3]);
+					Movie m = new Movie( moviesTokens[1], moviesTokens[2], moviesTokens[3]);
 					movies.put(new Long(id), m);
 					
 
@@ -84,6 +84,7 @@ import models.User;
 
 			return movies;
 		}
+		
 
 		@SuppressWarnings("resource")
 		public static HashMap<Long, User> importUser() throws Exception 
@@ -107,7 +108,7 @@ import models.User;
 				if (usersTokens.length >= 6) {
 
 					long id = Long.parseLong(usersTokens[0]);
-					User u = new User(usersTokens[1], usersTokens[2], usersTokens[3], Integer.parseInt(usersTokens[4]), usersTokens[5]);
+					User u = new User(usersTokens[1], usersTokens[2], Integer.parseInt(usersTokens[3]), usersTokens[4], usersTokens[5]);
 					users.put(new Long(id), u);
 				}
 				else{

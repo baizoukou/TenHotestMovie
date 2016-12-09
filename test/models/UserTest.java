@@ -8,41 +8,42 @@ import org.junit.Test;
 
 public class UserTest
 {
-  User homer = new User (01,"homer", "simpson", 25,  "male",  "doctor");
+  private static Object length;
+User homer = new User ("homer", "simpson",25,   "male",   "doctor");
 
   @Test
   public void testCreate()
   {
-	assertEquals (01,                    homer.id);
+	//assertEquals (01,                    homer.id);
 	assertEquals ("homer",               homer.firstname);
     assertEquals ("simpson",             homer.lastname);
-    assertEquals (25,                    homer.age     );   
-    assertEquals ("male",                homer.gender); 
+    assertEquals (25,                    homer.age     ); 
+    assertEquals ("male",                homer.gender);
     assertEquals ("doctor",              homer.occupation);
   }
 
-  @Test
-  public void testIds()
-  {
-    Set<Long> ids = new HashSet<>();
-    for (User user : user)
-    {
-      ids.add(user.id);
-    }
-    assertEquals (user.length, ids.size());
-  }
+//  @Test
+//  public void testIds()
+//  {
+//    Set<Long> id = new HashSet<>();
+//    for (User user : user)
+//    {
+//      id.add(user.id);
+//    }
+//    assertEquals (UserTest.length, id.size());
+//  }
 
   @Test
   public void testToString()
   {
-    assertEquals ("User{" + homer.id + ", homer, simpson, 35, male, student}", homer.toString());
+    assertEquals ("User{" + homer.id + ", homer, simpson,  male, 35, student}", homer.toString());
   }
   
   @Test
   public void testEquals()
   {
-    User homer2 = new User (02,"homer", "simpson", 35,  "male", "student"); 
-    User bart   = new User (03,"bart", "simpson", 30,  "male", "lecturer"); 
+    User homer2 = new User ("homer", "simpson",  35, "male",  "student"); 
+    User bart   = new User ("bart", "simpson", 30,  "male",  "lecturer"); 
 
     assertEquals(homer, homer);
     assertEquals(homer, homer2);

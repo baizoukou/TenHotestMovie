@@ -19,8 +19,8 @@ import asg.cliche.ShellFactory;
 /*
  * @author alexandre Baizoukou WIT Bsc Applied Computing
  * @version 1.0
- * @author Eamon Delastar WIT Lecturer
  * @author Franck Walsh WIT Lecturer
+ * @author Eamon Delastar WIT Lecturer
  * @author Martin Harrigan Assistant Lecturer WIT 
  * @author Cormen, Leiserson, Rivest, Stein, Introduction to Algorithms, MIT Press
  * @author Fotakis. Course of Algorithms and Complexity at the National Technical University of Athens.
@@ -48,7 +48,7 @@ public class Main
  public void addUser (@Param(name="firstname") String firstname, @Param(name="lastname") String lastname,
 		 			  @Param(name="age") int age, @Param(name="gender") String gender, @Param(name="occupation") String occupation)
  {
-	 TenHotestMovie.addUser(firstname, lastname, gender, age,  occupation);
+	 TenHotestMovie.addUser(firstname, lastname,  age,gender,  occupation);
  }
 
  
@@ -64,12 +64,18 @@ public class Main
  {
 	 TenHotestMovie.addMovie(title, releaseDate, url);
  }
+ 
+// @Command(description="Add a Rating")
+// public void addMovie (@Param(name="title") String title, @Param(name="releaseDate") String releaseDate, @Param(name="url") String url)
+// {
+//	 TenHotestMovie.addMovie(title, releaseDate, url);
+// }
 
 
  public static void main(String[] args) throws Exception
  {
  Main main = new Main();
- Shell shell = ShellFactory.createConsoleShell("lm", "Welcome to TenHotestMovie - ?help for instructions", main);
+ Shell shell = ShellFactory.createConsoleShell("lm", "Welcome to the TenHotestMovies platform - ?help for instructions", main);
  shell.commandLoop();
  main.TenHotestMovie.store();
  }
