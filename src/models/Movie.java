@@ -31,10 +31,10 @@ import utils.CSVLoader;
 public class Movie implements Comparable<Movie> {
 	
     private static long counter = 0;
-	private final long id;
-	private final String title;
-	private final String releaseDate;
-	private final String Url;
+	final long id;
+	final String title;
+	final String releaseDate;
+	final String Url;
 		
 	private int sumRatings;
 	private int sumReviewers;

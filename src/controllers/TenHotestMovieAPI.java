@@ -1,5 +1,6 @@
 package controllers;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,6 +11,7 @@ import java.util.Map;
 import models.Movie;
 import models.User;
 import utils.CSVLoader;
+import utils.XMLSerializer;
 
 /*
  * * @author alexandre Baizoukou WIT Bsc Applied Computing
@@ -70,7 +72,23 @@ public class TenHotestMovieAPI {
 
 	public void store() {
 		// TODO Auto-generated method stub
+		XMLSerializer serializer = new XMLSerializer(new File("test.xml"));
+		serializer.push(movieIndex);
+		serializer.push(userIndex);
+		//serializer.push(ratingIndex);
+		try {
+			serializer.write();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
-	
+	public void load(){
+		XMLSerializer serializer = new XMLSerializer (new File ("test.xml"));
+		serializer.pop(movieIndex);
+		//serializer.pop(userIndex);
+		
+	}
+
 	}

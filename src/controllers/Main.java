@@ -13,6 +13,8 @@ import asg.cliche.Command;
 import asg.cliche.Param;
 import asg.cliche.Shell;
 import asg.cliche.ShellFactory;
+import models.User;
+import utils.CSVLoader;
 
 
 /*
@@ -67,6 +69,7 @@ public class Main
  
  public static void main(String[] args) throws Exception
  {
+ User.users = CSVLoader.importUser();
  Main main = new Main();
  Shell shell = ShellFactory.createConsoleShell("lm", "Welcome to the TenHotestMovies platform, when you are ready Let get started - ?help for instructions", main);
  shell.commandLoop();

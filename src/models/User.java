@@ -45,15 +45,7 @@ public class User {
 		this.occupation = occupation;
 	}
 
-	public static HashMap<Long, User> users;
-	{
-		try {
-			User.users = CSVLoader.importUser();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+	public static HashMap<Long, User> users = new HashMap<Long, User>();
 	
 
 	@Override

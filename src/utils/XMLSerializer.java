@@ -17,10 +17,14 @@ package utils;
 import java.io.File;
 import java.io.FileReader;
 import java.io.ObjectInputStream;
+import java.util.Map;
 import java.util.Stack;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
+
+import models.Movie;
+import models.User;
 
 public class XMLSerializer implements Serializer {
 	@SuppressWarnings("rawtypes")
@@ -36,7 +40,7 @@ public class XMLSerializer implements Serializer {
 		stack.push(o);
 	}
 
-	public Object pop() {
+	public Object pop(Map<Long, Movie> movieIndex) {
 		return stack.pop();
 	}
 
@@ -59,6 +63,17 @@ public class XMLSerializer implements Serializer {
 	public void write() throws Exception {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public void put(Map<Long, User> userIndex) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Object pop() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
