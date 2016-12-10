@@ -39,7 +39,7 @@ public class Rating
 	private User user;
 	private Movie movie;
 	int rating;
-   private double average;
+    double average;
 
 	public Movie getMovie() {
 		return movie;
@@ -52,6 +52,10 @@ public class Rating
 		this.user = user;
 		this.movie = movie;
 		this.rating = rating;
+	}
+
+	public Rating(ArrayList<Rating> rating2) {
+		// TODO Auto-generated constructor stub
 	}
 
 	public User getUser() {

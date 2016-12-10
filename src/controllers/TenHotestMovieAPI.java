@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import models.Movie;
+import models.Rating;
 import models.User;
 import utils.CSVLoader;
 import utils.XMLSerializer;
@@ -35,6 +36,7 @@ import utils.XMLSerializer;
 public class TenHotestMovieAPI {
 	public Map<Long, User> userIndex = new HashMap<>();
 	public Map<Long, Movie> movieIndex = new HashMap<>();
+	
 
 	public TenHotestMovieAPI() {
 	}
@@ -69,13 +71,41 @@ public class TenHotestMovieAPI {
 		movieIndex.put(movie.getId(), movie);
 		return movie;
 	}
+	
+	public static List<Movie> getTenHotestMovie() {
+		int n = 10;
+		List<Movie> movies = new ArrayList<Movie>(CSVLoader.movies.values());
+		Collections.sort(movies);
+		n = (n > movies.size()) ? movies.size() : n;
+		return new ArrayList<Movie>(movies.subList(0, n));
+	}
 
-	public void store() {
+	public static void TenHotestMovie(ArrayList<Movie> movies, int n) {
+		for (Movie movie : getTenHotestMovie()) {
+			System.out.println(movie);
+		}
+	}
+//	public static ArrayList<Rating> rating = new ArrayList<Rating>(); {
+//		Rating rating = new Rating(CSVLoader.rating);
+//		CSVLoader.rating.add(rating);
+//		return rating;
+//	}
+	
+	public Rating addRating(Long user, Long movie, int rating2, double average) {
+		Rating rating = new Rating(CSVLoader.rating);
+		CSVLoader.rating.add(rating);
+		return rating;
+		
+	}
+	
+	
+    
+public void store() {
 		// TODO Auto-generated method stub
 		XMLSerializer serializer = new XMLSerializer(new File("test.xml"));
 		serializer.push(movieIndex);
 		serializer.push(userIndex);
-		//serializer.push(ratingIndex);
+		serializer.push(CSVLoader.rating);
 		try {
 			serializer.write();
 		} catch (Exception e) {
@@ -84,11 +114,21 @@ public class TenHotestMovieAPI {
 		}
 		
 	}
+	@SuppressWarnings("unchecked")
 	public void load(){
 		XMLSerializer serializer = new XMLSerializer (new File ("test.xml"));
-		serializer.pop(movieIndex);
-		//serializer.pop(userIndex);
+		CSVLoader.rating = (ArrayList<Rating>) serializer.pop();
+		userIndex = (Map<Long, User>) serializer.pop();
+		movieIndex = (Map<Long, Movie>) serializer.pop();
 		
 	}
+
+
+	public void getRating(long id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 
 	}

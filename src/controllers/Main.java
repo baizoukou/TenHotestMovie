@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -13,9 +14,9 @@ import asg.cliche.Command;
 import asg.cliche.Param;
 import asg.cliche.Shell;
 import asg.cliche.ShellFactory;
+import models.Movie;
 import models.User;
 import utils.CSVLoader;
-
 
 /*
  * @author alexandre Baizoukou WIT Bsc Applied Computing
@@ -38,42 +39,59 @@ import utils.CSVLoader;
  *  give the list of top Ten Hottest Movies
  *  read the movie data base from external file
  *  save file in an XML file 
+ *  
  
 */
 
 @SuppressWarnings("unused")
-public class Main
-{
- public TenHotestMovieAPI TenHotestMovie = new TenHotestMovieAPI();
- 
- @Command(description="Add a new User")
- public void addUser (@Param(name="firstname") String firstname, @Param(name="lastname") String lastname,
-		 			  @Param(name="age") int age, @Param(name="gender") String gender, @Param(name="occupation") String occupation)
- {
-	 TenHotestMovie.addUser(firstname, lastname,  age, gender,  occupation);
- }
+public class Main {
+	public TenHotestMovieAPI TenHotestMovie = new TenHotestMovieAPI();
 
- 
- @Command(description="Delete a User")
- public void removeUser (@Param(name="id") Long id)
- {
-	 TenHotestMovie.removeUser(id);
- }
- 
- 
- @Command(description="Add a Movie")
- public void addMovie (@Param(name="title") String title, @Param(name="releaseDate") String releaseDate, @Param(name="url") String url)
- {
-	 TenHotestMovie.addMovie(title, releaseDate, url);
- }
- 
- public static void main(String[] args) throws Exception
- {
- User.users = CSVLoader.importUser();
- Main main = new Main();
- Shell shell = ShellFactory.createConsoleShell("lm", "Welcome to the TenHotestMovies platform, when you are ready Let get started - ?help for instructions", main);
- shell.commandLoop();
- main.TenHotestMovie.store();
- }
- 
+	@Command(description = "Add a new User")
+	public void addUser(@Param(name = "firstname") String firstname, @Param(name = "lastname") String lastname,
+			@Param(name = "age") int age, @Param(name = "gender") String gender,
+			@Param(name = "occupation") String occupation) {
+		TenHotestMovie.addUser(firstname, lastname, age, gender, occupation);
+	}
+
+	@Command(description = "Delete a User")
+	public void removeUser(@Param(name = "id") Long id) {
+		TenHotestMovie.removeUser(id);
+	}
+
+	@Command(description = "Add a Movie")
+	public void addMovie(@Param(name = "title") String title, @Param(name = "releaseDate") String releaseDate,
+			@Param(name = "url") String url) {
+		TenHotestMovie.addMovie(title, releaseDate, url);
+		
+	}
+
+	@Command(description = "Add a Rating")
+	public void addRating(@Param(name = "user") Long user, @Param(name = "movie") Long movie,
+			@Param(name = "rating") int rating, @Param(name = "average") double average) {
+		TenHotestMovie.addRating(user, movie, rating, average);
+	}
+
+//	@Command(description="Get a user rating")
+//	   public void getRating (@Param(name="by id") long id)
+//	   {
+//		TenHotestMovie.getRating(id);
+//	   }
+	   
+//	   @Command(description="Get  user recomendation")
+//	   public void getUserRecomendation (@Param(name="by user id") long id)
+//	   {
+//		   TenHotestMovie.getUserRecomendation(id);
+//	   }
+
+	public static void main(String[] args) throws Exception {
+		User.users = CSVLoader.importUser();
+		Main main = new Main();
+		Shell shell = ShellFactory.createConsoleShell("lm",
+				"Welcome to the TenHotestMovies platform, when you are ready Let get started - ?help for instructions",
+				main);
+		shell.commandLoop();
+		main.TenHotestMovie.store();
+	}
+
 }
