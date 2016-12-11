@@ -1,27 +1,29 @@
-//package models;
-//
-//import static org.junit.Assert.*;
-//
-//import org.junit.Test;
-//
-//public class RatingTest
-//{ 
-//  @Test
-//  public void testCreate()
-//  {
-//    assertEquals (0.01, 23.3f, rating[0].sumRating);
-//    assertEquals (0.01, 33.3f, rating[0].sumRating);
-//  }
-//
-//  @Test
-//  public void testIds()
-//  {
-//    assertNotEquals(rating[0].id, rating[1].id);
-//  }
-//
+package models;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+//import static utils.Fixture;
+
+public class RatingTest
+{ 
+  @Test
+  public void testCreate()
+  {
+    assertEquals (1, 2, 23562);
+    assertEquals (2, 33,52364 );
+  }
+
+  @Test
+  public void testIds()
+  {
+    assertNotEquals(User.class, Movie.class);
+  }
+
 //  @Test
 //  public void testToString()
 //  {
-//    assertEquals ("Rating{" + ratings[0].id + ", 23.3, 33.3}", ratings[0].toString());
+//    assertEquals ("Rating{" + Test.id + ", 2, 23562}", test.toString());
 //  }
 //}
+}

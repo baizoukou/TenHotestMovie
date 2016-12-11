@@ -1,5 +1,7 @@
 package models;
 
+import static com.google.common.base.MoreObjects.toStringHelper;
+
 import java.io.FileNotFoundException;
 
 /*
@@ -54,6 +56,14 @@ public class Rating
 		this.rating = rating;
 	}
 
+	 @Override
+	 public String toString()
+	 {
+		 return toStringHelper(this).addValue(user)
+				        .addValue(movie)
+				        .addValue(rating)
+				        .toString();
+	 }
 	public Rating(ArrayList<Rating> rating2) {
 		// TODO Auto-generated constructor stub
 	}

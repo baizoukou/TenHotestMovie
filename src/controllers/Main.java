@@ -1,5 +1,6 @@
 package controllers;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -17,6 +18,8 @@ import asg.cliche.ShellFactory;
 import models.Movie;
 import models.User;
 import utils.CSVLoader;
+import utils.Serializer;
+import utils.XMLSerializer;
 
 /*
  * @author alexandre Baizoukou WIT Bsc Applied Computing
@@ -40,58 +43,79 @@ import utils.CSVLoader;
  *  read the movie data base from external file
  *  save file in an XML file 
  *  
- 
-*/
+
+ */
 
 @SuppressWarnings("unused")
 public class Main {
-	public TenHotestMovieAPI TenHotestMovie = new TenHotestMovieAPI();
+
+	public TenHotestMovieAPI tenAPI;
+
+	public Main() throws Exception
+	{
+		File  datastore = new File("datastore.xml");
+		Serializer serializer = new XMLSerializer(datastore);
+
+		tenAPI = new TenHotestMovieAPI(serializer);
+		tenAPI.prime();
+
+		if (datastore.isFile())
+		{
+			tenAPI.load();
+		}
+		tenAPI.store();
+
+	}
+
+	public static void main(String[] args) throws Exception {
+		Main main = new Main();
+
+
+		Shell shell = ShellFactory.createConsoleShell("lm",
+				"Welcome to the TenHotestMovies platform, when you are ready Let get started - ?help for instructions",
+				main);
+		shell.commandLoop();
+	}
+
+
 
 	@Command(description = "Add a new User")
 	public void addUser(@Param(name = "firstname") String firstname, @Param(name = "lastname") String lastname,
 			@Param(name = "age") int age, @Param(name = "gender") String gender,
 			@Param(name = "occupation") String occupation) {
-		TenHotestMovie.addUser(firstname, lastname, age, gender, occupation);
+		tenAPI.addUser(firstname, lastname, age, gender, occupation);
 	}
 
 	@Command(description = "Delete a User")
 	public void removeUser(@Param(name = "id") Long id) {
-		TenHotestMovie.removeUser(id);
+		tenAPI.removeUser(id);
 	}
 
 	@Command(description = "Add a Movie")
 	public void addMovie(@Param(name = "title") String title, @Param(name = "releaseDate") String releaseDate,
 			@Param(name = "url") String url) {
-		TenHotestMovie.addMovie(title, releaseDate, url);
-		
+		tenAPI.addMovie(title, releaseDate, url);
+
 	}
 
 	@Command(description = "Add a Rating")
 	public void addRating(@Param(name = "user") Long user, @Param(name = "movie") Long movie,
 			@Param(name = "rating") int rating, @Param(name = "average") double average) {
-		TenHotestMovie.addRating(user, movie, rating, average);
+		tenAPI.addRating(user, movie, rating);
 	}
 
-//	@Command(description="Get a user rating")
-//	   public void getRating (@Param(name="by id") long id)
-//	   {
-//		TenHotestMovie.getRating(id);
-//	   }
-	   
-//	   @Command(description="Get  user recomendation")
-//	   public void getUserRecomendation (@Param(name="by user id") long id)
-//	   {
-//		   TenHotestMovie.getUserRecomendation(id);
-//	   }
-
-	public static void main(String[] args) throws Exception {
-		User.users = CSVLoader.importUser();
-		Main main = new Main();
-		Shell shell = ShellFactory.createConsoleShell("lm",
-				"Welcome to the TenHotestMovies platform, when you are ready Let get started - ?help for instructions",
-				main);
-		shell.commandLoop();
-		main.TenHotestMovie.store();
+	@Command(description="Get a user rating")
+	public void getRating (@Param(name="by id") long id)
+	{
+		tenAPI.getRating(id);
 	}
+
+	@Command(description="Get  user recomendation")
+	public void getTop10 ()
+	{
+		tenAPI.getTenHotestMovie();
+	}
+
+
 
 }

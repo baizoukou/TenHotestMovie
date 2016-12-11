@@ -21,7 +21,7 @@ User homer = new User ("homer", "simpson",25,   "male",   "doctor");
     assertEquals ("male",                homer.gender);
     assertEquals ("doctor",              homer.occupation);
   }
-
+//
 //  @Test
 //  public void testIds()
 //  {
@@ -36,15 +36,14 @@ User homer = new User ("homer", "simpson",25,   "male",   "doctor");
   @Test
   public void testToString()
   {
-    assertEquals ("User{" + homer.id + ", homer, simpson,  male, 35, student}", homer.toString());
+    assertEquals ("User{" + homer.id + ", homer, simpson, 25, male, doctor}", homer.toString());
   }
   
   @Test
   public void testEquals()
   {
-    User homer2 = new User ("homer", "simpson",  35, "male",  "student"); 
+    User homer2 = new User ("homer", "simpson",  25, "male",  "doctor"); 
     User bart   = new User ("bart", "simpson", 30,  "male",  "lecturer"); 
-
     assertEquals(homer, homer);
     assertEquals(homer, homer2);
     assertNotEquals(homer, bart);

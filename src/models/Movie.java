@@ -1,6 +1,8 @@
 package models;
 
 
+import static com.google.common.base.MoreObjects.toStringHelper;
+
 /*
  * * @author alexandre Baizoukou WIT Bsc Applied Computing
  * @version 1.0
@@ -51,6 +53,16 @@ public class Movie implements Comparable<Movie> {
 		this.Url = URL;
 		
 	}
+	@Override
+	public String toString()
+	{
+		return toStringHelper(this).addValue(id)
+				.addValue(title)
+				.addValue(releaseDate)
+				.addValue(Url)
+				.toString();
+	}
+	
 	
 
 

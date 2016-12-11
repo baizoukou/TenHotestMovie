@@ -25,11 +25,11 @@ public class Fixture {
     new Movie ("cycle", "school", "hjxzghjgd")
   };
 
-//  public static Rating[]ratings =
-//  {
-//    new Rating(0, 01,1, 0.001),
-//    new Rating(0.001, 2),  
-//    new Rating(0.001, 0.003),
-//    new Rating(0.001, 0.08)       
-//  };
+  public static Rating[]ratings =
+  {
+    new Rating(1L, 2L, 1),
+    new Rating(1L, 2L, 1),  
+    new Rating(1L, 2L, 13),
+    new Rating(1L, 2L, 1)       
+  };
 }
