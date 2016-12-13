@@ -16,7 +16,7 @@ import utils.Serializer;
 import utils.XMLSerializer;
 
 /*
- * * @author alexandre Baizoukou WIT Bsc Applied Computing
+ * *author alexandre Baizoukou WIT Bsc Applied Computing
  * @version 1.0
  * @author Franck Walsh WIT Lecturer
  * @author Eamon Delastar WIT Lecturer
@@ -63,15 +63,6 @@ public class TenHotestMovieAPI {
 	}
 
 
-//	{
-//		try {
-//			User.users = CSVLoader.importUser();
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	}
-
 	public User addUser(String firstname, String lastname,int age, String gender,  String occupation) {
 		User user = new User(firstname,lastname,  age, gender, occupation);
 		userIndex.put(user.id, user);
@@ -83,8 +74,6 @@ public class TenHotestMovieAPI {
 		return null;
 	}
 
-	public static HashMap<Long, Movie> movies;
-
 
 	public Movie addMovie(String title, String releaseDate, String url) {
 		Movie movie = new Movie(title, releaseDate, url);
@@ -94,23 +83,13 @@ public class TenHotestMovieAPI {
 
 	public List<Movie> getTenHotestMovie() {
 		int n = 10;
-		System.out.println(movies.size());
-		List<Movie> movies2 = new ArrayList<Movie>(movies.values());
+		System.out.println(movieIndex.size());
+		List<Movie> movies2 = new ArrayList<Movie>(movieIndex.values());
 		Collections.sort(movies2);
-//		n = (n > movies2.size()) ? movies2.size() : n;
-		return movies2.subList(0, n);
+    	return movies2.subList(0, n);
 	}
 
-	//	public static void TenHotestMovie(ArrayList<Movie> movies, int n) {
-	//		for (Movie movie : getTenHotestMovie()) {
-	//			System.out.println(movie);
-	//		}
-	//	}
-	//	public static ArrayList<Rating> rating = new ArrayList<Rating>(); {
-	//		Rating rating = new Rating(CSVLoader.rating);
-	//		CSVLoader.rating.add(rating);
-	//		return rating;
-	//	}
+	
 
 	public Rating addRating(Long userid, Long movieid, int therating) {
 		Rating rating = new Rating(userid, movieid, therating);
@@ -122,10 +101,10 @@ public class TenHotestMovieAPI {
 
 	public void store() throws Exception {
 		// TODO Auto-generated method stub
+		
 		serializer.push(movieIndex);
 		serializer.push(userIndex);
 		serializer.push(ratings);
-	
 			serializer.write();
 	
 

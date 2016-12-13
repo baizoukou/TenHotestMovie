@@ -16,7 +16,9 @@ package utils;
 
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Map;
 import java.util.Stack;
 
@@ -40,7 +42,7 @@ public class XMLSerializer implements Serializer {
 		stack.push(o);
 	}
 
-	public Object pop(Map<Long, Movie> movieIndex) {
+	public Object pop() {
 		return stack.pop();
 	}
 
@@ -59,21 +61,17 @@ public class XMLSerializer implements Serializer {
 
 	}
 
-	@Override
 	public void write() throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void put(Map<Long, User> userIndex) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Object pop() {
-		// TODO Auto-generated method stub
-		return null;
+		ObjectOutputStream os = null;
+		try {
+			XStream xstream = new XStream(new DomDriver());
+			os = xstream.createObjectOutputStream(new FileWriter(file));
+			os.writeObject(stack);
+		} finally {
+			if (os != null) {
+				os.close();
+			}
+		}
 	}
 
 }

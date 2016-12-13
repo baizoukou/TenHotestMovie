@@ -53,17 +53,17 @@ public class Main {
 
 	public Main() throws Exception
 	{
-		File  datastore = new File("datastore.xml");
+		File  datastore = new File("datastore.xml");// is calling file from data store if file not exist call from prime
 		Serializer serializer = new XMLSerializer(datastore);
 
 		tenAPI = new TenHotestMovieAPI(serializer);
-		tenAPI.prime();
 
 		if (datastore.isFile())
 		{
 			tenAPI.load();
+		} else {
+			tenAPI.prime();
 		}
-		tenAPI.store();
 
 	}
 
@@ -110,10 +110,13 @@ public class Main {
 		tenAPI.getRating(id);
 	}
 
-	@Command(description="Get  user recomendation")
+	@Command(description="Get  user recomendation")// from the movie list iterate through and get top ten movies
 	public void getTop10 ()
 	{
-		tenAPI.getTenHotestMovie();
+		List<Movie> movies = tenAPI.getTenHotestMovie();
+		for (Movie m : movies) {
+			System.out.println(m);
+		}
 	}
 
 
